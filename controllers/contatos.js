@@ -3,7 +3,14 @@ module.exports = function(app) {
 	var ContatoController = {
 		index: function(req, res) {
 			var usuario = req.session.usuario;
-
+			var contatos = usuario.contatos;
+			
+			var contato = {
+				nome:'nome',
+				email: 'email'
+			}
+			contatos.push(contato);
+			console.log(usuario);
 			var params = {
 				usuario: usuario,
 				contatos: contatos
