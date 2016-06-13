@@ -1,13 +1,13 @@
 module.exports = function(app) {
 
 	var ContatoController = {
-		index: function(req, res) {
+		/*index: function(req, res) {
 			var usuario = req.session.usuario;
 			var contatos = usuario.contatos;
 			
 			var contato = {
-				nome:'nome',
-				email: 'email'
+				nome: usuario.nome,
+				email: usuario.email
 			}
 			contatos.push(contato);
 			console.log(usuario);
@@ -17,10 +17,24 @@ module.exports = function(app) {
 			};
 
 			res.render('contatos/index', params);
+		},*/
+
+		index: function(req, res) {
+
+			var usuario = req.session.usuario;
+			var contatos = usuario.contatos;
+			var params = {
+				usuario: usuario,
+				contatos: contatos
+			};
+
+			res.render('contatos/index', params);
+
 		},
 		create: function(req, res) {
 
 			var contato = req.body.contato;
+			var usuario = req.session.usuario;
 			usuario.contatos.push(contato);
 			res.redirect('/contatos');
 
@@ -59,9 +73,9 @@ module.exports = function(app) {
 		},
 		update: function(req, res) {
 
-			var contato = req.body.contato
+			var contato = req.body.contato;
 
-			, usuario = req.session.usuario;
+			var usuario = req.session.usuario;
 
 			usuario.contatos[req.params.id] = contato;
 
@@ -70,9 +84,9 @@ module.exports = function(app) {
 		},
 		destroy: function(req, res) {
 
-			var usuario = req.session.usuario
+			var usuario = req.session.usuario;
 
-			, id = req.params.id;
+			var id = req.params.id;
 
 			usuario.contatos.splice(id, 1);
 

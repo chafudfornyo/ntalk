@@ -6,15 +6,15 @@ module.exports = function(app) {
 		},
 		login: function(req, res) {
 			
-			var email = req.body.email;
-			console.log(req.session);			
-			var nome = req.body.nome;
+			var email = req.body.usuario.email;
+			
+			var nome = req.body.usuario.nome;
 
 			if (email && nome) {
 
 				var usuario = {
-					nome : req.body.nome, 
-					email: req.body.email,
+					nome : req.body.usuario.nome, 
+					email: req.body.usuario.email,
 					contatos : []				
 				};
 
