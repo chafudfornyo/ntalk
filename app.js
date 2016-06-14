@@ -14,13 +14,16 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var cookie = cookieParser(SECRET);
 var store = new session.MemoryStore();
-var mongoose = require('mongoose');
-global.db = mongoose.connect('mongodb://localhost:27017/ntalk').connection;
 
+var mongoose = require('mongoose');
+
+global.db = mongoose.connection;
 global.db.on('error', function (err) { console.log(err.message); });
 global.db.once('open', function () {
     console.log("mongodb connection open");
 });
+
+mongoose.connect('mongodb://localhost:27017/ntalk');
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
