@@ -17,10 +17,7 @@ module.exports = function(app) {
 					email: req.body.usuario.email,
 					contatos : []				
 				};
-
 				req.session.usuario = usuario;
-
-
 				res.redirect('/contatos');
 
 			} else {
